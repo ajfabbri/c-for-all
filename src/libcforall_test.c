@@ -34,4 +34,4 @@ int main(int argc, char *argv[])
     return EXIT_SUCCESS;
 }
 
-// vim: sw=4 sts=0 et
+// vim: ts=8 et sw=4 sts=4

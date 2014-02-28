@@ -29,5 +29,10 @@ How To Build
 
  $ ./autogen.sh
 
-3. ./configure && make
+3. mkdir build && cd build && ../configure && make
 
+
+Libkml is a good example with nice documentation.  Eventually the process for
+building various language bindings should be similar:
+
+https://code.google.com/p/libkml/wiki/BuildingAndInstalling

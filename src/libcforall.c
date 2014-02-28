@@ -73,4 +73,4 @@ int is_opaque_thingy_valid(const struct opaque_thingy *t)
         return 0;
 }
 
-// vim: sw=4 sts=0 et
+// vim: ts=8 et sw=4 sts=4
