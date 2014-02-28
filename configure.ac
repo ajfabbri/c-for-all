@@ -1,9 +1,8 @@
-AC_PREREQ([2.67]
+AC_PREREQ([2.67])
 AC_INIT([libforall], [1.0], [ajfabbri@gmail.com])
 AC_CONFIG_SRCDIR([src/libforall.h])
 AC_CONFIG_AUX_DIR(config)
 AC_CONFIG_MACRO_DIR(config)
-AC_CONFIG_HEADER(config.h)
 AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
 
 # We're using libtool to help with shared libs 
