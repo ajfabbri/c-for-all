@@ -13,9 +13,21 @@ I want a skeleton or template library that:
 - Is callable from Java, Python, and other languages.
 - Uses SWIG to create bindings for other languages.
 
+Dependencies
+------------
+- Autotools 
+- Install swig 2.
+	e.g. on Debian/Ubuntu, `apt-get install swig2.0`
+	on OS X, with homebrew, `brew install swig`
+
+
 How To Build
 ------------
 
-- Install swig.
+1. Clone this repository.
+2. Generate build files:
 
-e.g. on Debian/Ubuntu, `apt-get install swig2.0`
+ $ ./autogen.sh
+
+3. ./configure && make
+

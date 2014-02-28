@@ -6,19 +6,20 @@
  *
  * See ../LICENSE. (c) Aaron Fabbri, 2014.
  */
-
+#include <stdlib.h>
 #include <string.h>
 
-#include "libforall.h"
+#include "libcforall.h"
 
 struct opaque_thingy {
     int x;
     double y;
-}
+};
+
 
 /* Some arbitrary values to pass around. */
-#define THINGY_VAL              { .a = 22, .b = 9990 }
-#define OPAQUE_THINGY_VAL       { .x = -100, .y = 3.14159 }
+#define THINGY_VAL          ((struct thingy){ .a = 22, .b = 9990 })
+#define OPAQUE_THINGY_VAL   ((struct opaque_thingy){ .x = -100, .y = 3.14159 })
 
 static const struct thingy thingy_constant = THINGY_VAL;
 static const struct opaque_thingy opaque_thingy_constant = OPAQUE_THINGY_VAL;
@@ -28,7 +29,7 @@ static const struct opaque_thingy opaque_thingy_constant = OPAQUE_THINGY_VAL;
  * TODO who owns allocation?  Do we malloc then provide a free() function for
  * script?
 */
-char * repeatChar(char c, int count)
+char * repeat_char(char c, int count)
 {
     char *s = malloc(count);
     memset(s, (unsigned char)c, count);
@@ -44,13 +45,13 @@ struct thingy * get_thingy(void)
 { 
     struct thingy *t;
     t = malloc(sizeof(*t));
-    t = THINGY_VAL;
+    *t = THINGY_VAL;
     return t;
 }
 
 int is_thingy_valid(const struct thingy *t)
 {
-    if (t.a == thingy_constant.a && t.b == thingy_constant.b)
+    if (t->a == thingy_constant.a && t->b == thingy_constant.b)
         return 1;
     else
         return 0;
@@ -58,15 +59,15 @@ int is_thingy_valid(const struct thingy *t)
 
 struct opaque_thingy * get_opaque_thingy(void)
 {
-    struct thingy *t;
+    struct opaque_thingy *t;
     t = malloc(sizeof(*t));
-    t = THINGY_VAL;
+    *t = OPAQUE_THINGY_VAL;
     return t;
 }
 
-int is_opaque_thingy_valid(const struct opaque_thingy *)
+int is_opaque_thingy_valid(const struct opaque_thingy *t)
 {
-    if (t.x == opaque_thingy_constant.a && t.y == opaque_thingy_constant.b)
+    if (t->x == opaque_thingy_constant.x && t->y == opaque_thingy_constant.y)
         return 1;
     else
         return 0;
