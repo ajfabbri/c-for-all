@@ -1,7 +1,17 @@
+AC_PREREQ([2.67]
 AC_INIT([libforall], [1.0], [ajfabbri@gmail.com])
-AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+AC_CONFIG_SRCDIR([src/libforall.h])
+AC_CONFIG_AUX_DIR(config)
+AC_CONFIG_MACRO_DIR(config)
+AC_CONFIG_HEADER(config.h)
+AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
+
+# We're using libtool to help with shared libs 
+AM_PROG_AR
+LT_INIT
+
+# Check for other programs
 AC_PROG_CC
-AC_PROG_RANLIB
 
 # SWIG
 #AX_PKG_SWIG(2.0.1, [], [ AC_MSG_ERROR([SWIG is required.]) ])
