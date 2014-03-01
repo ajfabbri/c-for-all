@@ -35,6 +35,19 @@ How To Build
  $ make
 
 
+Running Example
+---------------
+
+To test calling the library from Java:
+
+ $ cd src/test/java
+ $ ./run_test.sh
+
+The script builds and runs and example Java app that calls the C library.  Woo hoo.
+
+Other Thoughts
+--------------
+
 Libkml is a good example with nice documentation.  Eventually the process for
 building various language bindings should be similar:
 
