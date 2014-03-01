@@ -42,7 +42,7 @@ e.g. in your .bashrc
   export JAVA_HOME=`/usr/libexec/java_home`
 
 
-Runnin gExample
+Running Example
 ---------------
 
 To test calling the library from Java:
