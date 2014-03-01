@@ -45,6 +45,13 @@ To test calling the library from Java:
 
 The script builds and runs and example Java app that calls the C library.  Woo hoo.
 
+
+Limitations
+--------------
+Haven't tested OS X builds yet but most of the support should be there.
+
+See also ./TODO.
+
 Other Thoughts
 --------------
 
