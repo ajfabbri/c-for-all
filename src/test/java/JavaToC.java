@@ -1,16 +1,21 @@
-import net.fabbrication.cforall;
+import net.fabbrication.cforall.*;
 
+/**
+ * Test / example Java app calling C library.
+ * @author Aaron Fabbri 2014
+ */
 class JavaToC {
 
     static {
         try {
-            System.loadLibrary("libcforall_java");
+            System.loadLibrary("cforall_java");
         } catch (UnsatisfiedLinkError e) {
             System.err.println("Failed to load libcforall. " + e);
             System.err.println("Set your classpath and ensure" +
                     " LD_LIBRARY_PATH can see libcforall_java etc.");
             System.exit(1);
         }
+    }
         
     public static void main(String[] args) {
 

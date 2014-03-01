@@ -10,7 +10,7 @@ AM_CFLAGS = -I$(srcdir)/src/include -g -Wall
 #
 lib_LTLIBRARIES = src/libcforall.la
 src_libcforall_la_SOURCES = src/libcforall.c
-#src_libcforall_la_LDFLAGS = 
+src_libcforall_la_LDFLAGS = -lexpat
 src_libcforallincludedir = src/include/libcforall.h
 include_HEADERS = src/include/libcforall.h
 
