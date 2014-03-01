@@ -34,8 +34,15 @@ How To Build
  $ ../configure --with-java-include-dir=$JAVA_HOME/include --with-java-lib-dir=$JAVA_HOME/lib
  $ make
 
+* Set your JAVA_HOME environment variable. *
+On Debian/Ubuntu I'm using /usr/lib/jvm/java-7-oracle 
+On OS X you can usually use the output of the command `/usr/libexec/java_home`,
+e.g. in your .bashrc
 
-Running Example
+  export JAVA_HOME=`/usr/libexec/java_home`
+
+
+Runnin gExample
 ---------------
 
 To test calling the library from Java:
@@ -45,15 +52,10 @@ To test calling the library from Java:
 
 The script builds and runs and example Java app that calls the C library.  Woo hoo.
 
-
-Limitations
---------------
-Haven't tested OS X builds yet but most of the support should be there.
-
-See also ./TODO.
-
 Other Thoughts
 --------------
+
+See also ./TODO.
 
 Libkml is a good example with nice documentation.  Eventually the process for
 building various language bindings should be similar:
