@@ -16,7 +16,6 @@ AC_PROG_CC
 
 # SWIG
 AX_PKG_SWIG(2.0.1, [ ], [ AC_MSG_ERROR([SWIG is required.]) ] )
-AX_SWIG_MULTI_MODULE_SUPPORT
 #AX_SWIG_PYTHON
 
 dnl Which platform are we building on?

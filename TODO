@@ -1,0 +1,5 @@
+
+TODOs
+======
+
+- Remove funky autoconf macros in confit/AX_SWIG*m4.  I think they have limited value.
