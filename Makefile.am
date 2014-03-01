@@ -43,7 +43,7 @@ src/cforall_java.c: src/swig/cforall.i
 
 javadir = $(datadir)/java
 java_DATA = cforall.jar
-cforall.jar : cforall_java.c
+cforall.jar : src/cforall_java.c
 	$(JAVAC) $(java_package_dir)/*.java
 	$(JAR) cf cforall.jar $(java_package_dir)/*.class
 
