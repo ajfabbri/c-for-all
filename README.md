@@ -25,21 +25,28 @@ How To Build
 ------------
 
 1. Clone this repository.
+
 2. Generate build files:
 
- $ ./autogen.sh
+```
+  ./autogen.sh
+```
 
 3. 
+
+```
  $ mkdir build && cd build
  $ ../configure --with-java-include-dir=$JAVA_HOME/include --with-java-lib-dir=$JAVA_HOME/lib
  $ make
+```
 
-* Set your JAVA_HOME environment variable. *
+*Set your JAVA_HOME environment variable.*
 On Debian/Ubuntu I'm using /usr/lib/jvm/java-7-oracle 
 On OS X you can usually use the output of the command `/usr/libexec/java_home`,
 e.g. in your .bashrc
-
+```
   export JAVA_HOME=`/usr/libexec/java_home`
+```
 
 
 Running Example
@@ -47,8 +54,10 @@ Running Example
 
 To test calling the library from Java:
 
+```
  $ cd src/test/java
  $ ./run_test.sh
+ ```
 
 The script builds and runs and example Java app that calls the C library.  Woo hoo.
 
