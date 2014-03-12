@@ -29,7 +29,7 @@ static void load_cpu(void)
 {
     unsigned long count = 0;
     unsigned long i;
-    for (i = 0; i<1000*1000; i++)
+    for (i = 0; i<100*1000*1000; i++)
         if (i % 7 == 0)
             count++;
 }
