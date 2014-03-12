@@ -19,7 +19,15 @@ class JavaToC {
         
     public static void main(String[] args) {
 
+        long start_cycles = libcforall.rdtscl();
         System.out.println("5 x 10 is " + Double.toString(libcforall.multiply(5.0, 10.0)));
+        double cycles_usec = libcforall.get_cycles_per_usec();
+        System.out.println("Your machine appears to do " + Double.toString(cycles_usec) +
+                " cycles per usec (Mhz).");
+        System.out.print("Approx. time spent in main(), in usec/seconds: ");
+        long end_cycles = libcforall.rdtscl();
+        double usec = (end_cycles-start_cycles) / cycles_usec;
+        System.out.println(Double.toString(usec) + "/" + Double.toString(usec/10e6));
     }
 }
 

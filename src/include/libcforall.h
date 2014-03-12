@@ -6,6 +6,10 @@
 #ifndef _LIBCFORALL_H_
 #define _LIBCFORALL_H_
 
+unsigned long rdtscl(void);
+double get_cycles_per_usec(void);
+
+/* nonsense (testing) functions below */
 struct thingy {
     int a;
     int b;
