@@ -31,6 +31,9 @@ int main(int argc, char *argv[])
     printf("multiply(%f, %f) -> %f\n", x, y, multiply(x, y));
     assert(x * y == multiply(x, y));
 
+    double mhz = get_cycles_per_usec();
+    printf("Detected %.2f cpu cycles/usec.\n", mhz);
+
     return EXIT_SUCCESS;
 }
 

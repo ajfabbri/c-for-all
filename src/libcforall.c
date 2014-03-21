@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <stdio.h>
 
 #include "libcforall.h"
 
@@ -29,9 +30,14 @@ static void load_cpu(void)
 {
     unsigned long count = 0;
     unsigned long i;
-    for (i = 0; i<100*1000*1000; i++)
-        if (i % 7 == 0)
-            count++;
+    const unsigned int log2_iter = 10;
+    /* Code does nothing useful except trick gcc to not optimize it out. */
+    for (i = 0; i < (1<<log2_iter); i++) {
+        if ((i & 0x111) == i)
+            i++;
+        if (i > i%19)
+           usleep(0); 
+    }
 }
 
 /** Determine cpu ticks per microsecond. */
@@ -39,7 +45,7 @@ double get_cycles_per_usec(void)
 {
     unsigned long pre, post;
     struct timespec start_t, end_t;
-    double tsc_start, tsc_end;
+    unsigned long tsc_start, tsc_end;
     double elapsed;
     int i;
 
@@ -50,7 +56,7 @@ double get_cycles_per_usec(void)
     clock_gettime(CLOCK_MONOTONIC, &start_t);
     post = rdtscl();
     /* average timestamps */
-    tsc_start = 0.5 * (double)pre + (double)post;
+    tsc_start = ((double)pre + (double)post)/2;
 
     /* pass some time burning CPU */
     for (i = 0; i<10; i++)
@@ -60,19 +66,20 @@ double get_cycles_per_usec(void)
     pre = rdtscl();
     clock_gettime(CLOCK_MONOTONIC, &end_t);
     post = rdtscl();
-    tsc_end = 0.5 * (double)pre + (double)post;
+    tsc_end =((double)pre + (double)post)/2;
 
     /* get elapsed wall time */
-    if (end_t.tv_nsec < start_t.tv_nsec) {
-        elapsed = (double)(start_t.tv_nsec - end_t.tv_nsec - 1);
-        elapsed += (double)(end_t.tv_sec - start_t.tv_sec - 1) * 1.0e9;
-    } else {
-        elapsed = (double) (end_t.tv_nsec - start_t.tv_nsec);
-        elapsed += (double) (end_t.tv_sec - start_t.tv_sec) * 1.0e9;
+    struct timespec delta;
+    delta.tv_sec = end_t.tv_sec - start_t.tv_sec;
+    delta.tv_nsec = end_t.tv_nsec - start_t.tv_nsec;
+    /* handle nsec wrapping */
+    if (delta.tv_nsec < 0) {
+        delta.tv_nsec += 1e9;
+        delta.tv_sec--;
     }
 
-    /* nsec -> usec */
-    elapsed /= 1000;
+    /* In usec */
+    elapsed = delta.tv_nsec / 1000 + delta.tv_sec * 1e6;
     return (tsc_end - tsc_start) / elapsed;
 }
 
